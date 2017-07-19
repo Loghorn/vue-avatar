@@ -104,15 +104,11 @@ export default {
 
   methods: {
     initial (username) {
-      let parts = username.split(/[ -]/)
+      let parts = username.split(/[ -\.,]/)
       let initials = ''
 
       for (var i = 0; i < parts.length; i++) {
-        initials += parts[i].charAt(0)
-      }
-
-      if (initials.length > 3 && initials.search(/[A-Z]/) !== -1) {
-        initials = initials.replace(/[a-z]+/g, '')
+        initials += parts[i].replace(/[^a-zA-Z0-9]/g, '').substr(0, parts.length > 2 ? 1 : 2)
       }
 
       initials = initials.substr(0, 3).toUpperCase()
