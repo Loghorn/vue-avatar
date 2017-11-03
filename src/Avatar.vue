@@ -25,6 +25,10 @@ export default {
       type: Number,
       default: 50
     },
+    unit: {
+      type: String,
+      default: 'px'
+    },
     src: {
       type: String
     },
@@ -68,23 +72,23 @@ export default {
 
     style () {
       const style = {
-        width: this.size + 'px',
-        height: this.size + 'px',
+        width: this.size + this.unit,
+        height: this.size + this.unit,
         borderRadius: (this.rounded) ? '50%' : 0,
         textAlign: 'center',
         verticalAlign: 'middle'
       }
 
       const imgBackgroundAndFontStyle = {
-        background: 'transparent url(' + this.src + ') no-repeat scroll 0% 0% / ' + this.size + 'px ' + this.size + 'px content-box border-box'
+        background: 'transparent url(' + this.src + ') no-repeat scroll 0% 0% / ' + this.size + this.unit + ' ' + this.size + this.unit + ' content-box border-box'
       }
 
       const initialBackgroundAndFontStyle = {
         backgroundColor: this.background,
-        font: Math.floor(this.size / 2.5) + 'px/100px Helvetica, Arial, sans-serif',
+        font: Math.floor(this.size / 2.5) + this.unit + '/100px Helvetica, Arial, sans-serif',
         fontWeight: 'bold',
         color: this.fontColor,
-        lineHeight: (this.size + Math.floor(this.size / 20)) + 'px'
+        lineHeight: (this.size + Math.floor(this.size / 20)) + this.unit
       }
 
       const backgroundAndFontStyle = (this.isImage)
